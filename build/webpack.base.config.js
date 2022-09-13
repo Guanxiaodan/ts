@@ -1,5 +1,4 @@
 // 公共配置文件
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
