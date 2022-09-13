@@ -1,1 +1,0 @@
-(()=>{"use strict";document.querySelectorAll(".app")[0].innerHTML="第一个ts"})();
