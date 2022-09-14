@@ -1,4 +1,4 @@
-# TS 的基本类型
+# Typescript 的基本类型
 
 <div align=center><img src="./imgs/tsTypes.png" width="400" ></div>
 
