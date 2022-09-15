@@ -2,16 +2,6 @@
 
 一组具有名字的常量集合
 
-```typescript
-const enum Month {
-  Jen,
-  Feb,
-  Mar,
-}
-```
-
-<font color=red>会</font>
-
 ## 数字枚举
 
 > <font color=red>有反向映射</font>,既可以用 value 索引，也可以用 key 索引,原理是反向映射 (const p = {}; p[p['m']=3]='m')
