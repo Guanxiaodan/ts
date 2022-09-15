@@ -1,6 +1,6 @@
 # Typescript 的基本类型
 
-<div align=center><img src="./imgs/tsTypes.png" width="400" ></div>
+<div align=center><img src="./imgs/tsTypes.png" width="1000" ></div>
 
 ## 类型注解
 
