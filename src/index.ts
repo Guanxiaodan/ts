@@ -1,10 +1,17 @@
 let myHello: string = "第一个ts";
 document.querySelectorAll(".app")[0].innerHTML = myHello;
-enum Char2 {
-  a,
-  b = Char2.a,
-  c = 1 + 3,
-  d = Math.random(),
-  e = "123".length,
+
+function add8(...rest: number[]): number;
+function add8(...rest: string[]): string;
+function add8(...rest: any[]): any {
+  let first = rest[0];
+  if (typeof first === "string") {
+    return rest.join("");
+  }
+  if (typeof first === "number") {
+    return rest.reduce((pre, cur) => pre + cur);
+  }
 }
-console.log("gxd", "Char2:", Char2);
+
+console.log(add8(1, 2, 3));
+console.log(add8("hello", "world"));

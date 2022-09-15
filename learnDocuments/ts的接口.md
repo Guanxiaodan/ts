@@ -1,15 +1,5 @@
 # 接口
 
-```typescript
-const enum Month {
-  Jen,
-  Feb,
-  Mar,
-}
-```
-
-<font color=red>会</font>
-
 约束对象，函数，类的结构和类型
 
 ## 对象类型的接口
