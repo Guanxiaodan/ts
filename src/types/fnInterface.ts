@@ -41,3 +41,45 @@ let lib1 = getLib();
 lib1.doSomething();
 let lib2 = getLib();
 console.log(lib2.version);
+
+// 接口的继承
+// 接口继承接口
+interface Human {
+  name: string;
+  eat(): void;
+}
+
+interface Man extends Human {
+  run(): void;
+}
+
+interface Child {
+  cry(): void;
+}
+
+interface Boy extends Man, Child {}
+let boy: Boy = {
+  name: "xiao ming",
+  run() {},
+  eat() {},
+  cry() {},
+};
+
+// 接口继承类
+// 相当于接口把类的成员都抽象了出来，即只有类的成员结构，而没有具体的实现
+class Auto {
+  state = 1;
+  private state2 = 0;
+}
+// 接口继承类
+interface AutoInterface extends Auto {}
+
+// 类实现接口
+// 这样不行，因为C不是Auto的子类，且AutoInterface抽离来了Auto的非共有属性，所以不能实现接口AutoInterface
+// class C implements AutoInterface {
+//   state = 1;
+//   private state2 = 0;
+// }
+
+// Bus类继承Auto类，并实现AutoInterface接口
+class Bus extends Auto implements AutoInterface {}

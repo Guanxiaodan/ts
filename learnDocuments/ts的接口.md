@@ -231,3 +231,70 @@ lib1.doSomething();
 let lib2 = getLib();
 console.log(lib2.version);
 ```
+
+## 接口的继承
+
+### 接口继承接口
+
+接口可以像类似的相互继承，而且一个接口可以继承多个接口
+
+```typescript
+interface Human {
+  name: string;
+  eat(): void;
+}
+
+interface Man extends Human {
+  run(): void;
+}
+
+interface Child {
+  cry(): void;
+}
+
+interface Boy extends Man, Child {}
+let boy: Boy = {
+  name: "xiao ming",
+  run() {},
+  eat() {},
+  cry() {},
+};
+```
+
+### 接口继承类
+
+相当于接口把类的成员都抽象了出来，即只有类的成员结构，而没有具体的实现。这里不仅把类的公共成员抽离了出来，其他的私有成员，受保护成员也被抽离了出来
+
+```typescript
+class Auto {
+  state = 1;
+}
+// 接口继承类
+interface AutoInterface extends Auto {}
+
+// 类实现接口
+class C implements AutoInterface {
+  state = 1;
+}
+```
+
+如果一个接口 C 继承了类 A 的非共有属性，那么只能由这个类的子类 a 去实现接口 C。
+
+```typescript
+class Auto {
+  state = 1;
+  private state2 = 0;
+}
+// 接口继承类
+interface AutoInterface extends Auto {}
+
+// 类实现接口
+// 这样不行，因为C不是Auto的子类，且AutoInterface抽离来了Auto的非共有属性，所以不能实现接口AutoInterface
+class C implements AutoInterface {
+  state = 1;
+  private state2 = 0;
+}
+
+// Bus类继承Auto类，并实现AutoInterface接口
+class Bus extends Auto implements AutoInterface {}
+```

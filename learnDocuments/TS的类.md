@@ -86,6 +86,121 @@ class Husky2 extends Dog {
 }
 ```
 
-## 抽象类
+## 抽象类(ts 对 es 的扩展)
+
+<font color=red>只能被继承，不能被实例化的类。</font>
+
+> 抽象类的好处是<font color=red>可以抽离出事务的共性</font>，有利于代码复用和扩展，还可以<font color=red>实现多态</font>
+
+关键字<font color=red>abstract</font>
+
+- 抽象方法
+  - 使用 abstract 关键字
+  - 不指定方法的具体实现
+  - 好处是明确知道子类可以有其他的实现，就没有必要在父类中实现了。
+  - 例如下面的 sleep 就是抽象方法
+
+```typescript
+abstract class Animal {
+  eat() {
+    console.log("Animal can eat");
+  }
+  abstract sleep(): void; // 不指定方法的具体实现，就构成了抽象方法，好处是明确知道子类可以有其他的实现，就没有必要在父类中实现了。
+}
+
+// let animal = new Animal()  // 会报错，无法给抽象类创建实例
+```
+
+### 抽象类的继承
+
+```typescript
+class DOG2 extends Animal {
+  constructor(name: string) {
+    super();
+    this.name = name;
+  }
+  name: string;
+  run() {}
+  sleep() {
+    console.log("dog can sleep 10 hours");
+  }
+}
+
+const dog2 = new DOG2("wangwang2");
+dog2.eat(); // Animal can eat
+```
 
 ## 多态
+
+```typescript
+class Cat extends Animal {
+  sleep(): void {
+    console.log("cat love sleep");
+  }
+}
+
+let cat = new Cat();
+
+let animals: Animal[] = [dog2, cat];
+
+animals.forEach((item) => {
+  item.sleep();
+});
+```
+
+## this 类型（一种特殊的 ts 类型）
+
+类的成员方法可以直接返回 this, 这样可以很方便地实现<font color=red>链式调用</font>;
+
+```typescript
+class WorkFlow {
+  step1() {
+    return this;
+  }
+  step2() {
+    return this;
+  }
+}
+new WorkFlow().step1().step2().step2();
+```
+
+在继承的时候，this 类型也可以表现出多态，因为 this 既可以是父类型，也可以是子类型,这样就实现了父类和子类方法的链式调用
+
+```typescript
+class MyFlow extends WorkFlow {
+  next() {
+    return this;
+  }
+}
+
+new MyFlow().next().step1().next().step2();
+```
+
+## 类和接口之间的关系
+
+### 类实现接口
+
+- 一个接口可以约束类成员有哪些属性，以及属性的类型
+- 类实现接口要用到关键字 <font color=red>implements</font>
+- 注意：类实现接口的时候，要实现接口中声明的所有属性。类也可以再额外声明自己的属性
+- 接口只能约束类的<font color=red>公有成员</font>（其他带修饰器的，比如私有属性，构造函数 等等不受接口约束）
+
+```typescript
+interface Human {
+  name: string;
+  eat(): void;
+}
+
+class Asian implements Human {
+  constructor(name: string) {
+    this.name = name;
+  }
+  name: string;
+  eat() {}
+  speak() {}
+}
+```
+
+### 接口继承类
+
+详见 ts 的接口章节
