@@ -178,6 +178,7 @@ new MyFlow().next().step1().next().step2();
 
 ## 类和接口之间的关系
 
+<div align=center><img src="./imgs/classAndInterface.png" width="400" ></div>
 ### 类实现接口
 
 - 一个接口可以约束类成员有哪些属性，以及属性的类型
