@@ -79,10 +79,10 @@ function area3(s: Shape2) {
       return s.size * s.size;
     case "rectangle":
       return s.height * s.width;
-    default:
-      return ((e: never) => {
-        throw new Error(e);
-      })(s);
+    // default:
+    //   return ((e: never) => {
+    //     throw new Error(e);
+    //   })(s); // 这里由于走到了never,说明上面有遗漏分支，所以会报错，需要补全分支
   }
 }
 // ((e: never) => {

@@ -17,7 +17,7 @@ window.onkeydown = (event) => {
 // 类型断言
 // 有时候TS的类型推断不符合预期，而且开发者有自信比TS更了解代码，这时候就可以使用类型断言来覆盖ts的类型推断
 let foo = {};
-foo.bar = 1; // 这个时候会报错，因为foo中没有bar属性
+// foo.bar = 1; // 这个时候会报错，因为foo中没有bar属性
 
 // 可以通过类型断言来解决
 interface Foo {
@@ -102,7 +102,9 @@ f1 = f2;
 // 函数重载
 function overload1(a: number, b: number): number; // 目标函数
 function overload1(a: string, b: string): string; // 目标函数
-function overload1(a: any, b: any): any; // 原函数
+function overload1(a: any, b: any): any {
+  return a + b;
+} // 原函数
 
 // 重载列表中目标函数的参数要多于原函数的参数
 
